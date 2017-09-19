@@ -1,3 +1,14 @@
-<h1>
-  {{title}}
-</h1>
+<a [routerLink]=""
+   [queryParams]="{searchQuery: 'aaa', detailedMovie: 'bbb'}">Default link</a>
+
+<a [routerLink]=""
+   [queryParams]="{searchQuery: 'a1'}"
+   queryParamsHandling="merge">sq: a1</a>
+
+<a [routerLink]=""
+   [queryParams]="{detailedMovie: 'b2'}"
+   queryParamsHandling="merge">dm: b2</a>
+
+<mov-search></mov-search>
+<mov-movies-list></mov-movies-list>
+<mov-movie-details></mov-movie-details>
