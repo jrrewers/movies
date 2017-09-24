@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core'
+import {FormBuilder, FormGroup} from '@angular/forms'
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'mov-search',
@@ -6,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class SearchComponent implements OnInit {
+  private searchForm: FormGroup
 
-  constructor() { }
+  @Output() searchQueryChanged: EventEmitter<string> = new EventEmitter()
+
+  constructor(private fb: FormBuilder) {
+    this.searchForm = this.fb.group({searchQuery: []})
+
+    this.searchForm.valueChanges
+      .distinctUntilChanged()
+      .debounceTime(250)
+      .subscribe(data =>
+        this.searchQueryChanged.emit(data['searchQuery'])
+      )
+  }
 
   ngOnInit() {
   }

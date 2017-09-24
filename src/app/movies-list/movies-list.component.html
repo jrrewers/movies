@@ -1,3 +1,4 @@
-<p>
-  Movies list: {{ searchQuery }} xxx
-</p>
+<div *ngFor="let movie of moviesList">
+  <p>{{movie.title}}</p>
+</div>
+

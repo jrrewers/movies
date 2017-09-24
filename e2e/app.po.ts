@@ -6,6 +6,6 @@ export class MoviesPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('mov-root h1')).getText();
   }
 }

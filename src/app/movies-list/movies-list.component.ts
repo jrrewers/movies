@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core'
-import {ActivatedRoute} from '@angular/router'
+import {Component, Input, OnInit} from '@angular/core'
+import {Movie} from '../store/store-model'
+import {Observable} from 'rxjs'
 
 @Component({
   selector: 'mov-movies-list',
@@ -7,13 +8,12 @@ import {ActivatedRoute} from '@angular/router'
   styles: []
 })
 export class MoviesListComponent implements OnInit {
-  private searchQuery: string
-  constructor(private route: ActivatedRoute) { }
+  @Input() moviesList: Observable<Movie[]>
+
+  constructor() {
+  }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params =>
-      this.searchQuery = params.searchQuery
-    )
   }
 
 }

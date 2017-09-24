@@ -1,14 +1,17 @@
-<a [routerLink]=""
+<a [routerLink]="search"
    [queryParams]="{searchQuery: 'aaa', detailedMovie: 'bbb'}">Default link</a>
 
-<a [routerLink]=""
+<a [routerLink]="search"
    [queryParams]="{searchQuery: 'a1'}"
    queryParamsHandling="merge">sq: a1</a>
 
-<a [routerLink]=""
+<a [routerLink]="['search']"
    [queryParams]="{detailedMovie: 'b2'}"
    queryParamsHandling="merge">dm: b2</a>
 
+<router-outlet></router-outlet>
+<!--
 <mov-search></mov-search>
-<mov-movies-list></mov-movies-list>
+<mov-movies-list [moviesList$]="(moviesList$$ | async)"></mov-movies-list>
 <mov-movie-details></mov-movie-details>
+-->
