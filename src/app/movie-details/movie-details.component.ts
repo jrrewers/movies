@@ -1,19 +1,47 @@
-import { Component, OnInit } from '@angular/core'
-import {ActivatedRoute} from '@angular/router'
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core'
+import {Movie} from '../store/models/Movie'
 
 @Component({
   selector: 'mov-movie-details',
-  templateUrl: './movie-details.component.html',
-  styles: []
-})
-export class MovieDetailsComponent implements OnInit {
-  private detailedMovie: string
-  constructor(private route: ActivatedRoute) { }
+  template: `
+    <div>
+      <img [hidden]="isPictureLoading"
+           src="{{posterUrl}}{{selectedMovie?.poster_path}}"
+           alt="{{selectedMovie?.title}}"
+           (load)="onImageLoad()">
+      <h2>{{selectedMovie?.title}}</h2>
+      <p>{{selectedMovie?.overview}}</p>
+    </div>`,
+  styles: [`
+    :host {
+      vertical-align: top
+    }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.detailedMovie = params.detailedMovie
-    })
+    img {
+      max-width: 30%;
+      float: left;
+      margin-right: 20px;
+    }
+
+    img:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class MovieDetailsComponent {
+  @Input() selectedMovie: Movie
+  @Input() posterUrl: string
+  @Input() isPictureLoading: boolean
+  @Output() imageLoaded: EventEmitter<any> = new EventEmitter()
+
+  constructor() {
+  }
+
+  onImageLoad() {
+    this.imageLoaded.emit()
   }
 
 }

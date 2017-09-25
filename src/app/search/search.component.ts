@@ -1,11 +1,26 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core'
+import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '@angular/core'
 import {FormBuilder, FormGroup} from '@angular/forms'
-import {Router} from '@angular/router'
 
 @Component({
   selector: 'mov-search',
-  templateUrl: './search.component.html',
-  styles: []
+  template: `
+    <div [formGroup]="searchForm">
+      <input type="text" formControlName="searchQuery"
+             placeholder="Search...">
+    </div>
+  `,
+  styles: [`
+    div {
+      text-align: right;
+    }
+
+    input {
+      padding: 10px 20px;
+      border-radius: 20px;
+      
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchComponent implements OnInit {
   private searchForm: FormGroup
@@ -17,6 +32,7 @@ export class SearchComponent implements OnInit {
 
     this.searchForm.valueChanges
       .distinctUntilChanged()
+      .filter(data => data['searchQuery'] !== '')
       .debounceTime(250)
       .subscribe(data =>
         this.searchQueryChanged.emit(data['searchQuery'])

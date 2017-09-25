@@ -1,21 +1,13 @@
-import {Component, OnInit} from '@angular/core'
-import {Store} from '@ngrx/store'
-import {MoviesStore} from './store/store-model'
-import {MoviesListArrivedAction} from './store/actions'
+import {ChangeDetectionStrategy, Component} from '@angular/core'
 
 @Component({
   selector: 'mov-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements  OnInit {
-  private moviesList$
+export class AppComponent {
 
-  constructor(private store: Store<MoviesStore>) {
-  }
-
-
-  ngOnInit() {
-
+  constructor() {
   }
 }

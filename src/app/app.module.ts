@@ -11,21 +11,17 @@ import {RouterModule, Routes} from '@angular/router'
 import {moviesReducers} from './store/reducers'
 import {StoreDevtoolsModule} from '@ngrx/store-devtools'
 import {DiscoverMoviesService} from './services/discover-movies.service'
-import {DefaultDataResolver} from './DefaultDataResolver'
-import { HomeComponent } from './home/home.component'
+import {HomeComponent} from './home/home.component'
 import {EffectsModule} from '@ngrx/effects'
 import {MoviesEffects} from './store/effects'
 import {SearchMoviesService} from 'app/services/search-movies.service'
+import {GetMovieDBConfigurationService} from './services/get-movie-dbconfiguration.service'
 
 const ROUTES: Routes = [
   {
     path: '',
     component: HomeComponent,
     pathMatch: 'full',
-  },
-  {
-    path: ':searchQuery:detailedMovie',
-    component: HomeComponent
   }
 ]
 
@@ -47,7 +43,7 @@ const ROUTES: Routes = [
     EffectsModule.forRoot([MoviesEffects]),
     StoreDevtoolsModule.instrument()
   ],
-  providers: [DiscoverMoviesService, SearchMoviesService],
+  providers: [GetMovieDBConfigurationService, DiscoverMoviesService, SearchMoviesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
