@@ -12,8 +12,8 @@ import {Movie} from '../store/models/Movie'
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MoviesListComponent{
-  @Input() moviesList: Observable<Movie[]>
+export class MoviesListComponent {
+  @Input() moviesList: Movie[]
   @Output() selectedMovie: EventEmitter<Movie> = new EventEmitter()
 
   selectMovie(movie: Movie) {

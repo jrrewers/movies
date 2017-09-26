@@ -1,25 +1,75 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
 
-import { MoviesListComponent } from './movies-list.component';
+import {MoviesListComponent} from './movies-list.component'
+import {ChangeDetectionStrategy} from '@angular/core'
+import {Movie} from '../store/models/Movie'
+import {By} from '@angular/platform-browser'
 
 describe('MoviesListComponent', () => {
-  let component: MoviesListComponent;
-  let fixture: ComponentFixture<MoviesListComponent>;
+  let component: MoviesListComponent
+  let fixture: ComponentFixture<MoviesListComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MoviesListComponent ]
+      declarations: [MoviesListComponent]
     })
-    .compileComponents();
-  }));
+      .overrideComponent(MoviesListComponent, {
+        set: {changeDetection: ChangeDetectionStrategy.Default}
+      })
+      .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MoviesListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(MoviesListComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+
+  it('should properly display input movie list', () => {
+    const movieListMock: Movie[] = [
+      {
+        title: 'Mock Movie',
+        overview: 'Overview of Mock Movie',
+        poster_path: 'poster_path',
+        vote_count: 2,
+        id: 12,
+        video: false,
+        vote_average: 3,
+        popularity: 4,
+        original_language: 'en',
+        original_title: 'Mock Movie',
+        genre_ids: [12, 7],
+        backdrop_path: 'backdrop_path_value',
+        adult: false,
+        release_date: new Date(2000, 10, 10)
+      },
+      {
+        title: 'Mock Movie 2',
+        overview: 'Overview of Mock Movie',
+        poster_path: 'poster_path',
+        vote_count: 2,
+        id: 12,
+        video: false,
+        vote_average: 3,
+        popularity: 4,
+        original_language: 'en',
+        original_title: 'Mock Movie',
+        genre_ids: [12, 7],
+        backdrop_path: 'backdrop_path_value',
+        adult: false,
+        release_date: new Date(2000, 10, 10)
+      }
+    ]
+    let secondDisplayedTitleNode
+
+    component.moviesList = movieListMock
+    fixture.detectChanges()
+    secondDisplayedTitleNode = fixture.debugElement.query(By.css('div:nth-of-type(2)'))
+    expect(secondDisplayedTitleNode.nativeElement.innerText).toContain(movieListMock[1].title)
+
+  })
+})
