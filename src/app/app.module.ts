@@ -17,7 +17,7 @@ import {MoviesEffects} from './store/effects'
 import {SearchMoviesService} from 'app/services/search-movies.service'
 import {GetMovieDBConfigurationService} from './services/get-movie-dbconfiguration.service'
 
-const ROUTES: Routes = [
+export const ROUTES: Routes = [
   {
     path: '',
     component: HomeComponent,
