@@ -1,11 +1,15 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core'
 import {AppState} from '../store/models/store-model'
 import {Store} from '@ngrx/store'
-import {Observable} from 'rxjs'
+import {Observable} from 'rxjs/Observable'
 import {selectIsPictureLoading, selectMoviesList, selectPosterUrl, selectSelectedMovie} from '../store/selectors'
 import {
-  GetDefaultMoviesListAction, GetMovieDBAPIConfigurationAction, HidePictureAction, MovieSelectedAction,
-  SearchMoviesAction, ShowPictureAction
+  GetDefaultMoviesListAction,
+  GetMovieDBAPIConfigurationAction,
+  HidePictureAction,
+  MovieSelectedAction,
+  SearchMoviesAction,
+  ShowPictureAction
 } from '../store/actions'
 import {Movie} from '../store/models/Movie'
 
@@ -40,12 +44,12 @@ import {Movie} from '../store/models/Movie'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
-  private moviesList$: Observable<Movie[]>
-  private selectedMovie$: Observable<Movie>
-  private posterUrl$: Observable<string>
-  private isPictureLoading$: Observable<boolean>
+  public moviesList$: Observable<Movie[]>
+  public selectedMovie$: Observable<Movie>
+  public posterUrl$: Observable<string>
+  public isPictureLoading$: Observable<boolean>
 
-  constructor(private store: Store<AppState>) {
+  constructor(public store: Store<AppState>) {
     this.moviesList$ = this.store.select(selectMoviesList)
     this.selectedMovie$ = this.store.select(selectSelectedMovie)
     this.posterUrl$ = this.store.select(selectPosterUrl)

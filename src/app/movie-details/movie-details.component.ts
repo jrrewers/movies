@@ -14,7 +14,8 @@ import {Movie} from '../store/models/Movie'
     </div>`,
   styles: [`
     :host {
-      vertical-align: top
+      vertical-align: top;
+      padding: 10px;
     }
 
     img {
@@ -27,6 +28,10 @@ import {Movie} from '../store/models/Movie'
       content: '';
       display: block;
       clear: both;
+    }
+    
+    h2 {
+      margin-top: 0;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush

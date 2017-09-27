@@ -30,7 +30,7 @@ describe('MoviesListComponent', () => {
   })
 
   it('should properly display input movie list', () => {
-    const movieListMock: Movie[] = [
+    const moviesListMock: Movie[] = [
       {
         title: 'Mock Movie',
         overview: 'Overview of Mock Movie',
@@ -66,10 +66,10 @@ describe('MoviesListComponent', () => {
     ]
     let secondDisplayedTitleNode
 
-    component.moviesList = movieListMock
+    component.moviesList = moviesListMock
     fixture.detectChanges()
     secondDisplayedTitleNode = fixture.debugElement.query(By.css('div:nth-of-type(2)'))
-    expect(secondDisplayedTitleNode.nativeElement.innerText).toContain(movieListMock[1].title)
+    expect(secondDisplayedTitleNode.nativeElement.innerText).toContain(moviesListMock[1].title)
 
   })
 })
