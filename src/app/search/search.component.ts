@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '@angular/core'
 import {FormBuilder, FormGroup} from '@angular/forms'
+import '../rxjs-imports'
 
 @Component({
   selector: 'mov-search',

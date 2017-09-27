@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component} from '@angular/core'
 
 @Component({
   selector: 'mov-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  template: `<router-outlet></router-outlet>`,
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {

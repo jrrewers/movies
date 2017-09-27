@@ -1,15 +1,17 @@
 import {Injectable} from '@angular/core'
 import {DiscoverMoviesService} from '../services/discover-movies.service'
 import {Actions, Effect} from '@ngrx/effects'
-import {Observable} from 'rxjs'
+import './../rxjs-imports'
+import {Observable} from 'rxjs/Observable'
+
 import {
-  GET_DEFAULT_MOVIES_LIST, GET_MOVIEDBAPI_CONFIGURATION, MOVIEDBAPI_CONFIGURATION_ARRIVED,
+  GET_DEFAULT_MOVIES_LIST,
+  GET_MOVIEDBAPI_CONFIGURATION,
   MovieDBAPIConfigurationArrivedAction,
   MoviesListArrivedAction,
   SEARCH_MOVIES
 } from './actions'
 import {Action, Store} from '@ngrx/store'
-import {ROUTER_NAVIGATION} from '@ngrx/router-store'
 import {SearchMoviesService} from '../services/search-movies.service'
 import {AppState} from './models/store-model'
 import {selectSearchQuery} from 'app/store/selectors'
